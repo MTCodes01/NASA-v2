@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Embiggen Your Eyes! - TESS Mosaic Explorer</title>
+    <style>
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            overflow: hidden; 
+            font-family: Arial, sans-serif;
+        }
+        
+        #openseadragon-viewer {
+            width: 100%;
+            height: 100vh;
+            background-color: #0a0a0a;
+        }
+
+        /* Control Panel */
+        #control-panel {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 15px;
+            color: #e2e8f0;
+            z-index: 1000;
+            min-width: 250px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        #control-panel h3 {
+            margin: 0 0 15px 0;
+            color: #ffd700;
+            font-size: 16px;
+            border-bottom: 1px solid #4a5568;
+            padding-bottom: 8px;
+        }
+
+        .control-section {
+            margin-bottom: 15px;
+        }
+
+        .control-section label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #cbd5e0;
+        }
+
+        .toggle-button {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            background: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .toggle-button:hover {
+            background: #4a5568;
+        }
+
+        .toggle-button.active {
+            background: #ffd700;
+            color: #1a202c;
+            border-color: #ffd700;
+        }
+
+        .slider-container {
+            margin: 10px 0;
+        }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+        }
+
+        /* Feature Markers */
+        .feature-marker {
+            border: 2px solid #ffd700;
+            background-color: rgba(255, 215, 0, 0.2);
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0s;
+            position: relative;
+        }
+
+        .feature-marker:hover {
+            background-color: rgba(255, 215, 0, 0.4);
+            transform: scale(1.2);
+            border-width: 3px;
+        }
+
+        .feature-marker.exoplanet {
+            border-color: #ff4500;
+            background-color: transparent;
+        }
+
+        .feature-marker.star {
+            border-color: #00bfff;
+            background-color: transparent;
+        }
+
+        .feature-marker.cluster {
+            border-color: #9370db;
+            background-color: transparent;
+        }
+
+        .marker-label {
+            position: absolute;
+            bottom: -20px;
+            white-space: nowrap;
+            font-size: 10px;
+            color: #ffd700;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2px 6px;
+            border-radius: 3px;
+            pointer-events: none;
+        }
+
+        /* Modal for Light Curves */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #1a202c;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 900px;
+            color: #e2e8f0;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #ffd700;
+        }
+
+        .close {
+            color: #cbd5e0;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 20px;
+        }
+
+        .close:hover {
+            color: #ffd700;
+        }
+
+        .feature-info {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        .feature-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        #lightCurveChart {
+            width: 100%;
+            height: 400px;
+        }
+
+        /* Legend */
+        #legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(20, 20, 30, 0.95);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 15px;
+            color: #e2e8f0;
+            z-index: 1000;
+        }
+
+        #legend h4 {
+            margin: 0 0 10px 0;
+            color: #ffd700;
+            font-size: 14px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            font-size: 12px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+
+    <div id="openseadragon-viewer"></div>
+
+    <!-- Control Panel -->
+    <div id="control-panel">
+        <h3>🔭 TESS Explorer Controls</h3>
+        
+        <!-- <div class="control-section">
+            <label>Layer Selection:</label>
+            <button class="toggle-button active" id="layer-tess">TESS Optical</button>
+            <button class="toggle-button" id="layer-infrared">WISE Infrared</button>
+        </div> -->
+
+        <div class="control-section">
+            <label>Annotations:</label>
+            <button type="button" class="toggle-button active" id="toggle-annotations">Show Annotations</button>
+        </div>
+
+        <div class="control-section slider-container">
+            <label>Layer Opacity: <span id="opacity-value">100%</span></label>
+            <input type="range" id="opacity-slider" min="0" max="100" value="100">
+        </div>
+
+        <div class="control-section">
+            <label>Feature Types:</label>
+            <button type="button" class="toggle-button active" id="filter-all">All Features</button>
+            <button type="button" class="toggle-button" id="filter-exoplanet">Exoplanets</button>
+            <button type="button" class="toggle-button" id="filter-star">Stars</button>
+            <button type="button" class="toggle-button" id="filter-cluster">Clusters</button>
+        </div>
+    </div>
+
+    <!-- Legend -->
+    <div id="legend">
+        <h4>Feature Legend</h4>
+        <div class="legend-item">
+            <div class="legend-color" style="border-color: #ff4500; background: rgba(255, 69, 0, 0.2);"></div>
+            <span>Exoplanet Candidate (TOI)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="border-color: #00bfff; background: rgba(0, 191, 255, 0.2);"></div>
+            <span>Known Star</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="border-color: #9370db; background: rgba(147, 112, 219, 0.2);"></div>
+            <span>Star Cluster</span>
+        </div>
+    </div>
+
+    <!-- Modal for Light Curves -->
+    <div id="lightCurveModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Feature Details</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="feature-info" id="feature-info"></div>
+            <canvas id="lightCurveChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================
+        // FEATURE CATALOGUE with RA/Dec coordinates
+        // =====================================================
+        // Load and filter exoplanets data
+        let featureCatalogue = [];
+
+        // Fetch exoplanets data and filter by coordinate bounds
+        fetch('exoplanets.json')
+            .then(response => response.json())
+            .then(data => {
+            // Filter exoplanets within the mosaic bounds
+            const filteredExoplanets = data.filter(exoplanet => {
+                return exoplanet.ra >= MOSAIC_RA_MIN && 
+                   exoplanet.ra <= MOSAIC_RA_MAX &&
+                   exoplanet.dec >= MOSAIC_DEC_MIN && 
+                   exoplanet.dec <= MOSAIC_DEC_MAX;
+            });
+
+            console.log(`Found ${filteredExoplanets.length} exoplanets within mosaic bounds`);
+
+            // Convert to feature catalogue format
+            featureCatalogue = filteredExoplanets.map(exoplanet => ({
+                id: exoplanet.id || 'Unknown',
+                name: exoplanet.name || 'Unknown Exoplanet',
+                type: 'exoplanet',
+                ra: exoplanet.ra,
+                dec: exoplanet.dec,
+                magnitude: exoplanet.magnitude || 'N/A',
+                description: exoplanet.description || 'No description available.',
+                hasLightCurve: exoplanet.hasLightCurve || false
+            }));
+
+            console.log(`Loaded ${featureCatalogue.length} exoplanets within mosaic bounds`);
+            
+            // Refresh annotations if viewer is already loaded
+            if (viewer && viewer.world.getItemCount() > 0) {
+                addFeatureAnnotations();
+            }
+            })
+            .catch(error => {
+            console.error('Error loading exoplanets data:', error);
+            // Fallback to empty catalogue
+            featureCatalogue = [];
+            });
+        
+        // Fetch stars data and add to feature catalogue
+        fetch('stars.json')
+            .then(response => response.json())
+            .then(data => {
+                // Filter stars within the mosaic bounds
+                const filteredStars = data.filter(star => {
+                    return star.ra >= MOSAIC_RA_MIN && 
+                           star.ra <= MOSAIC_RA_MAX &&
+                           star.dec >= MOSAIC_DEC_MIN && 
+                           star.dec <= MOSAIC_DEC_MAX;
+                });
+
+                console.log(`Found ${filteredStars.length} stars within mosaic bounds`);
+
+                // Convert to feature catalogue format and add to existing array
+                const starFeatures = filteredStars.map(star => ({
+                    id: star.id || 'Unknown',
+                    name: star.name || 'Unknown Star',
+                    type: 'star',
+                    ra: star.ra,
+                    dec: star.dec,
+                    magnitude: star.magnitude || 'N/A',
+                    description: star.description || 'No description available.',
+                    hasLightCurve: star.hasLightCurve || false
+                }));
+
+                featureCatalogue = featureCatalogue.concat(starFeatures);
+
+                console.log(`Total features loaded: ${featureCatalogue.length}`);
+                
+                // Refresh annotations if viewer is already loaded
+                if (viewer && viewer.world.getItemCount() > 0) {
+                    addFeatureAnnotations();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading stars data:', error);
+            });
+
+        // Fetch clusters data and add to feature catalogue
+        fetch('clusters.json')
+            .then(response => response.json())
+            .then(data => {
+                // Filter for cluster type and within mosaic bounds
+                const filteredClusters = data.filter(item => {
+                    return item.type === 'cluster' &&
+                           item.ra >= MOSAIC_RA_MIN && 
+                           item.ra <= MOSAIC_RA_MAX &&
+                           item.dec >= MOSAIC_DEC_MIN && 
+                           item.dec <= MOSAIC_DEC_MAX;
+                });
+
+                console.log(`Found ${filteredClusters.length} clusters within mosaic bounds`);
+
+                // Convert to feature catalogue format and add to existing array
+                const clusterFeatures = filteredClusters.map(cluster => ({
+                    id: cluster.id || 'Unknown',
+                    name: cluster.name || 'Unknown Cluster',
+                    type: 'cluster',
+                    ra: cluster.ra,
+                    dec: cluster.dec,
+                    magnitude: cluster.magnitude || 'N/A',
+                    description: cluster.description || 'No description available.',
+                    hasLightCurve: cluster.hasLightCurve || false
+                }));
+
+                featureCatalogue = featureCatalogue.concat(clusterFeatures);
+
+                console.log(`Total features loaded: ${featureCatalogue.length}`);
+                
+                // Refresh annotations if viewer is already loaded
+                if (viewer && viewer.world.getItemCount() > 0) {
+                    addFeatureAnnotations();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading clusters data:', error);
+            });
+
+        // =====================================================
+        // COORDINATE CONVERSION (RA/Dec to normalized image coords)
+        // =====================================================
+        const MOSAIC_RA_MIN = 0.0;
+        const MOSAIC_RA_MAX = 200.0;
+        const MOSAIC_DEC_MIN = -49.0;
+        const MOSAIC_DEC_MAX = -40.0;
+
+        function raDecToImageCoords(ra, dec) {
+            const x = (ra - MOSAIC_RA_MIN) / (MOSAIC_RA_MAX - MOSAIC_RA_MIN);
+            const y = 1.0 - (dec - MOSAIC_DEC_MIN) / (MOSAIC_DEC_MAX - MOSAIC_DEC_MIN);
+            return { x: x, y: y };
+        }
+
+        // =====================================================
+        // INITIALIZE OPENSEADRAGON VIEWER
+        // =====================================================
+        const viewer = OpenSeadragon({
+            id: "openseadragon-viewer",
+            tileSources: "tess_final_deep_zoom.dzi",
+            prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/",
+            sequenceMode: false,
+            showNavigator: true,
+            immediateRender: true,
+            maxZoomLevel: 100,
+            minZoomLevel: 0.35
+        });
+
+        // Store overlays for management
+        let activeOverlays = [];
+        let currentFilter = 'all';
+        let annotationsVisible = true;
+
+        // =====================================================
+        // ADD FEATURE ANNOTATIONS
+        // =====================================================
+        viewer.addHandler('open', function() {
+            console.log("TESS Mosaic loaded successfully!");
+            addFeatureAnnotations();
+        });
+
+        function addFeatureAnnotations() {
+            // Clear existing overlays
+            activeOverlays.forEach(overlay => viewer.removeOverlay(overlay.element));
+            activeOverlays = [];
+
+            featureCatalogue.forEach(feature => {
+                // Apply filter
+                if (currentFilter !== 'all' && feature.type !== currentFilter) {
+                    return;
+                }
+
+                const coords = raDecToImageCoords(feature.ra, feature.dec);
+                
+                // Create marker element
+                const marker = document.createElement('div');
+                marker.className = `feature-marker ${feature.type}`;
+                marker.innerHTML = `<div class="marker-label">${feature.id}</div>`;
+                
+                // Add click handler
+                marker.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showFeatureDetails(feature);
+                };
+
+                // Add overlay
+                const overlay = viewer.addOverlay({
+                    element: marker,
+                    location: new OpenSeadragon.Point(coords.x, coords.y),
+                    placement: OpenSeadragon.OverlayPlacement.CENTER
+                });
+
+                activeOverlays.push({ element: marker, feature: feature });
+            });
+        }
+
+        // =====================================================
+        // LIGHT CURVE GENERATION (Synthetic Data)
+        // =====================================================
+        function generateLightCurve(feature) {
+            const numPoints = 200;
+            const times = [];
+            const fluxes = [];
+            
+            for (let i = 0; i < numPoints; i++) {
+                const time = i * 0.1; // Time in days
+                let flux = 1.0; // Normalized flux
+                
+                if (feature.type === 'exoplanet') {
+                    // Simulate transit dips
+                    const period = 3.2; // days
+                    const phase = (time % period) / period;
+                    if (phase > 0.45 && phase < 0.55) {
+                        // Transit event (2% depth)
+                        const transitPhase = (phase - 0.5) * 20;
+                        flux = 1.0 - 0.02 * Math.exp(-transitPhase * transitPhase / 0.01);
+                    }
+                } else if (feature.type === 'star') {
+                    // Variable star pulsation
+                    flux = 1.0 + 0.05 * Math.sin(2 * Math.PI * time / 0.15);
+                }
+                
+                // Add noise
+                flux += (Math.random() - 0.5) * 0.005;
+                
+                times.push(time);
+                fluxes.push(flux);
+            }
+            
+            return { times, fluxes };
+        }
+
+        // =====================================================
+        // MODAL AND LIGHT CURVE DISPLAY
+        // =====================================================
+        let lightCurveChart = null;
+
+        function showFeatureDetails(feature) {
+            const modal = document.getElementById('lightCurveModal');
+            const modalTitle = document.getElementById('modal-title');
+            const featureInfo = document.getElementById('feature-info');
+            
+            modalTitle.textContent = feature.name;
+            featureInfo.innerHTML = `
+                <p><strong>Type:</strong> ${feature.type.charAt(0).toUpperCase() + feature.type.slice(1)}</p>
+                <p><strong>Coordinates:</strong> RA ${feature.ra.toFixed(2)}°, Dec ${feature.dec.toFixed(2)}°</p>
+                <p><strong>Magnitude:</strong> ${feature.magnitude}</p>
+                <p><strong>Description:</strong> ${feature.description}</p>
+            `;
+            
+            if (feature.hasLightCurve) {
+                const { times, fluxes } = generateLightCurve(feature);
+                displayLightCurve(times, fluxes, feature);
+            } else {
+                document.getElementById('lightCurveChart').style.display = 'none';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function displayLightCurve(times, fluxes, feature) {
+            const canvas = document.getElementById('lightCurveChart');
+            canvas.style.display = 'block';
+            const ctx = canvas.getContext('2d');
+            
+            if (lightCurveChart) {
+                lightCurveChart.destroy();
+            }
+            
+            lightCurveChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: times,
+                    datasets: [{
+                        label: 'Normalized Flux',
+                        data: fluxes,
+                        borderColor: '#ffd700',
+                        backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                        borderWidth: 2,
+                        pointRadius: 1,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: `Light Curve: ${feature.name}`,
+                            color: '#ffd700',
+                            font: { size: 16 }
+                        },
+                        legend: {
+                            labels: { color: '#e2e8f0' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time (days)',
+                                color: '#e2e8f0'
+                            },
+                            ticks: { color: '#cbd5e0' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Relative Flux',
+                                color: '#e2e8f0'
+                            },
+                            ticks: { color: '#cbd5e0' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // =====================================================
+        // CONTROL PANEL HANDLERS
+        // =====================================================
+        
+        // Close modal
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('lightCurveModal').style.display = 'none';
+        };
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('lightCurveModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        // Layer switching (simulated for demo)
+        // document.getElementById('layer-tess').onclick = function(e) {
+        //     e.preventDefault();
+        //     this.classList.add('active');
+        //     document.getElementById('layer-infrared').classList.remove('active');
+        //     // In real implementation: viewer.world.getItemAt(0).setOpacity(1);
+        // };
+
+        // document.getElementById('layer-infrared').onclick = function(e) {
+        //     e.preventDefault();
+        //     this.classList.add('active');
+        //     document.getElementById('layer-tess').classList.remove('active');
+        //     alert('WISE Infrared layer would be loaded here. In a full implementation, this would switch to a different tile source showing the same region in infrared wavelengths.');
+        // };
+
+        // Toggle annotations
+        document.getElementById('toggle-annotations').onclick = function() {
+            annotationsVisible = !annotationsVisible;
+            this.classList.toggle('active');
+            
+            activeOverlays.forEach(overlay => {
+                overlay.element.style.display = annotationsVisible ? 'flex' : 'none';
+            });
+        };
+
+        // Opacity slider
+        document.getElementById('opacity-slider').oninput = function() {
+            const opacity = this.value;
+            document.getElementById('opacity-value').textContent = opacity + '%';
+            viewer.world.getItemAt(0).setOpacity(opacity / 100);
+        };
+
+        // Feature filters
+        document.getElementById('filter-all').onclick = function(e) {
+            setFilter('all', this, e);
+        };
+        
+        document.getElementById('filter-exoplanet').onclick = function(e) {
+            setFilter('exoplanet', this, e);
+        };
+        
+        document.getElementById('filter-star').onclick = function(e) {
+            setFilter('star', this, e);
+        };
+        
+        document.getElementById('filter-cluster').onclick = function(e) {
+            setFilter('cluster', this, e);
+        };
+
+        function setFilter(filterType, button, e) {
+            if (e) {
+                e.preventDefault();
+            }
+
+            currentFilter = filterType;
+            
+            // Update button states
+            document.querySelectorAll('#control-panel .control-section:last-child .toggle-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            
+            // Refresh annotations
+            addFeatureAnnotations();
+        }
+    </script>   
+</body>
+</html>

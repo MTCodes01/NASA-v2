@@ -1,0 +1,1572 @@
+[
+    {
+        "id": "NGC 104",
+        "name": "47 Tuc (Globular Cluster)",
+        "type": "cluster",
+        "ra": 6.023625,
+        "dec": -72.08127777777777,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 288",
+        "name": "NGC 288 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 13.1885,
+        "dec": -26.58261111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 362",
+        "name": "NGC 362 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 15.809416666666667,
+        "dec": -70.84877777777777,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Whiting 1",
+        "name": "Whiting 1 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 30.737499999999997,
+        "dec": -3.2527777777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 1261",
+        "name": "NGC 1261 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 48.06754166666667,
+        "dec": -55.21622222222223,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 1",
+        "name": "Pal 1 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 53.3335,
+        "dec": 79.58105555555555,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "AM 1",
+        "name": "E 1 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 58.75958333333333,
+        "dec": -49.61527777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Eridanus",
+        "name": "Eridanus (Globular Cluster)",
+        "type": "cluster",
+        "ra": 66.18541666666667,
+        "dec": -21.186944444444446,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 2",
+        "name": "Pal 2 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 71.524625,
+        "dec": 31.3815,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 1851",
+        "name": "NGC 1851 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 78.52816666666666,
+        "dec": -40.04655555555556,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 1904",
+        "name": "M 79 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 81.04620833333334,
+        "dec": -24.52472222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 2298",
+        "name": "NGC 2298 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 102.24754166666668,
+        "dec": -36.00530555555556,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 2419",
+        "name": "NGC 2419 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 114.53529166666665,
+        "dec": 38.882444444444445,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Ko 2",
+        "name": "Ko 2 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 119.57083333333333,
+        "dec": 26.255,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pyxis",
+        "name": "Pyxis (Globular Cluster)",
+        "type": "cluster",
+        "ra": 136.99083333333334,
+        "dec": -37.22138888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 2808",
+        "name": "NGC 2808 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 138.01291666666665,
+        "dec": -64.86349999999999,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "E 3",
+        "name": "E 3 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 140.23779166666665,
+        "dec": -77.28188888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 3",
+        "name": "Pal 3 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 151.3829166666667,
+        "dec": 0.07166666666666667,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 3201",
+        "name": "NGC 3201 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 154.4034166666667,
+        "dec": -46.41247222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 4",
+        "name": "Pal 4 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 172.32,
+        "dec": 28.97358333333333,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Ko 1",
+        "name": "Ko 1 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 179.82708333333332,
+        "dec": 12.26,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 4147",
+        "name": "NGC 4147 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 182.52624999999998,
+        "dec": 18.54263888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 4372",
+        "name": "NGC 4372 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 186.43916666666667,
+        "dec": -72.659,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Rup 106",
+        "name": "Rup 106 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 189.6675,
+        "dec": -51.150277777777774,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 4590",
+        "name": "M 68 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 189.86658333333332,
+        "dec": -26.744055555555555,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 4833",
+        "name": "NGC 4833 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 194.8913333333333,
+        "dec": -70.8765,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5024",
+        "name": "M 53 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 198.23020833333334,
+        "dec": 18.168166666666668,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5053",
+        "name": "NGC 5053 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 199.112875,
+        "dec": 17.70025,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5139",
+        "name": "omega Cen (Globular Cluster)",
+        "type": "cluster",
+        "ra": 201.69683333333333,
+        "dec": -47.47958333333334,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5272",
+        "name": "M 3 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 205.54841666666664,
+        "dec": 28.377277777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5286",
+        "name": "NGC 5286 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 206.61170833333335,
+        "dec": -51.37425,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "AM 4",
+        "name": "AM 4 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 209.09041666666667,
+        "dec": -27.1675,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5466",
+        "name": "NGC 5466 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 211.36370833333336,
+        "dec": 28.534444444444446,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5634",
+        "name": "NGC 5634 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 217.405125,
+        "dec": -5.976416666666667,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5694",
+        "name": "NGC 5694 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 219.90120833333333,
+        "dec": -26.538944444444446,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "IC 4499",
+        "name": "IC 4499 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 225.076875,
+        "dec": -82.21369444444444,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5824",
+        "name": "NGC 5824 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 225.99429166666667,
+        "dec": -33.068222222222225,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 5",
+        "name": "Pal 5 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 229.02187500000002,
+        "dec": -0.11161111111111112,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5897",
+        "name": "NGC 5897 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 229.35208333333333,
+        "dec": -21.010277777777777,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5904",
+        "name": "M 5 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 229.63841666666667,
+        "dec": 2.081027777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5927",
+        "name": "NGC 5927 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 232.002875,
+        "dec": -50.673027777777776,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5946",
+        "name": "NGC 5946 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 233.86883333333333,
+        "dec": -50.659666666666666,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "BH 176",
+        "name": "BH 176 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 234.78104166666668,
+        "dec": -50.05272222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 5986",
+        "name": "NGC 5986 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 236.5125,
+        "dec": -37.78641666666667,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Lynga 7",
+        "name": "BH184 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 242.76520833333333,
+        "dec": -55.31777777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 14",
+        "name": "AvdB (Globular Cluster)",
+        "type": "cluster",
+        "ra": 242.75249999999997,
+        "dec": 14.957777777777777,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6093",
+        "name": "M 80 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 244.2600416666667,
+        "dec": -22.97608333333333,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6121",
+        "name": "M 4 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 245.89675000000003,
+        "dec": -26.52575,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6101",
+        "name": "NGC 6101 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 246.4505,
+        "dec": -72.20219444444444,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6144",
+        "name": "NGC 6144 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 246.80775,
+        "dec": -26.0235,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6139",
+        "name": "NGC 6139 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 246.91820833333333,
+        "dec": -38.84875,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 3",
+        "name": "Terzan 3 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 247.16699999999997,
+        "dec": -35.35347222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6171",
+        "name": "M 107 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 248.13275000000002,
+        "dec": -13.053777777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "1636-283",
+        "name": "ESO452-SC11 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 249.85604166666664,
+        "dec": -28.398694444444445,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6205",
+        "name": "M 13 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 250.42183333333335,
+        "dec": 36.45986111111112,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6229",
+        "name": "NGC 6229 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 251.74495833333333,
+        "dec": 47.52775,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6218",
+        "name": "M 12 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 251.80908333333338,
+        "dec": -1.9485277777777779,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "FSR 1735",
+        "name": "FSR 1735 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 253.04416666666668,
+        "dec": -47.058055555555555,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6235",
+        "name": "NGC 6235 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 253.35545833333333,
+        "dec": -22.177444444444447,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6254",
+        "name": "M 10 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 254.2877083333333,
+        "dec": -4.100305555555555,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6256",
+        "name": "NGC 6256 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 254.8859166666667,
+        "dec": -37.12138888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 15",
+        "name": "Pal 15 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 254.96250000000003,
+        "dec": -0.5388888888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6266",
+        "name": "M 62 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 255.30333333333328,
+        "dec": -30.113722222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6273",
+        "name": "M 19 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 255.65750000000003,
+        "dec": -26.26797222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6284",
+        "name": "NGC 6284 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 256.11879166666665,
+        "dec": -24.76486111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6287",
+        "name": "NGC 6287 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 256.2880416666667,
+        "dec": -22.70836111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6293",
+        "name": "NGC 6293 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 257.5425,
+        "dec": -26.582083333333333,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6304",
+        "name": "NGC 6304 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 258.634375,
+        "dec": -29.462027777777777,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6316",
+        "name": "NGC 6316 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 259.15541666666667,
+        "dec": -28.14011111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6341",
+        "name": "M 92 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 259.2807916666667,
+        "dec": 43.13594444444444,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6325",
+        "name": "NGC 6325 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 259.49670833333334,
+        "dec": -23.766,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6333",
+        "name": "M 9 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 259.7969166666667,
+        "dec": -18.515944444444443,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6342",
+        "name": "NGC 6342 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 260.29200000000003,
+        "dec": -19.587416666666666,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6356",
+        "name": "NGC 6356 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 260.8955416666667,
+        "dec": -17.81302777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6355",
+        "name": "NGC 6355 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 260.994125,
+        "dec": -26.353416666666668,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6352",
+        "name": "NGC 6352 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 261.3712916666667,
+        "dec": -48.42216666666666,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "IC 1257",
+        "name": "IC 1257 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 261.78541666666666,
+        "dec": -7.093055555555555,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 2",
+        "name": "HP 3 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 261.8879166666666,
+        "dec": -30.802333333333333,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6366",
+        "name": "NGC 6366 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 261.9343333333333,
+        "dec": -5.079861111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 4",
+        "name": "HP 4 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 262.6625,
+        "dec": -31.595527777777775,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "HP 1",
+        "name": "BH 229 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 262.77166666666665,
+        "dec": -29.981666666666666,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6362",
+        "name": "NGC 6362 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 262.97912499999995,
+        "dec": -67.04833333333333,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Liller 1",
+        "name": "Liller 1 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 263.3520833333333,
+        "dec": -33.389,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6380",
+        "name": "Ton 1 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 263.6166666666667,
+        "dec": -39.06916666666667,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 1",
+        "name": "HP 2 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 263.94916666666666,
+        "dec": -30.46972222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Ton 2",
+        "name": "Pismis 26 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 264.04375000000005,
+        "dec": -38.55333333333333,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6388",
+        "name": "NGC 6388 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 264.0717916666667,
+        "dec": -44.7355,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6402",
+        "name": "M 14 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 264.4004166666667,
+        "dec": -3.2459166666666666,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6401",
+        "name": "NGC 6401 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 264.6525,
+        "dec": -23.909499999999998,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6397",
+        "name": "NGC 6397 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 265.17537500000003,
+        "dec": -53.67433333333333,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 6",
+        "name": "Pal 6 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 265.9258333333333,
+        "dec": -26.222499999999997,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6426",
+        "name": "NGC 6426 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 266.22770833333334,
+        "dec": 3.170138888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Djorg 1",
+        "name": "Djorg 1 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 266.8679166666667,
+        "dec": -33.065555555555555,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 5",
+        "name": "Terzan 11 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 267.02000000000004,
+        "dec": -24.779166666666665,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6440",
+        "name": "NGC 6440 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 267.21958333333333,
+        "dec": -20.36025,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6441",
+        "name": "NGC 6441 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 267.5544166666666,
+        "dec": -37.05144444444444,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 6",
+        "name": "HP 5 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 267.69325,
+        "dec": -31.275388888888887,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6453",
+        "name": "NGC 6453 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 267.71541666666667,
+        "dec": -34.59916666666667,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "UKS 1",
+        "name": "UKS 1 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 268.6133333333333,
+        "dec": -24.14527777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6496",
+        "name": "NGC 6496 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 269.76533333333333,
+        "dec": -44.26594444444444,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 9",
+        "name": "Terzan 9 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 270.4116666666667,
+        "dec": -26.83972222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Djorg 2",
+        "name": "ESO456-SC38 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 270.4545833333333,
+        "dec": -27.825833333333332,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6517",
+        "name": "NGC 6517 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 270.46049999999997,
+        "dec": -8.958777777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 10",
+        "name": "Terzan 10 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 270.9016666666667,
+        "dec": -26.072499999999998,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6522",
+        "name": "NGC 6522 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 270.89175,
+        "dec": -30.033972222222225,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6535",
+        "name": "NGC 6535 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 270.96045833333335,
+        "dec": -0.2976388888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6528",
+        "name": "NGC 6528 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 271.20683333333335,
+        "dec": -30.05627777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6539",
+        "name": "NGC 6539 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 271.207,
+        "dec": -7.585861111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6540",
+        "name": "Djorg 3 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 271.53583333333336,
+        "dec": -27.76527777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6544",
+        "name": "NGC 6544 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 271.83575,
+        "dec": -24.997333333333334,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6541",
+        "name": "NGC 6541 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 272.00983333333335,
+        "dec": -43.71488888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "2MS-GC01",
+        "name": "2MASS-GC01 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 272.090875,
+        "dec": -19.829722222222223,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "ESO-SC06",
+        "name": "ESO280-SC06 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 272.275,
+        "dec": -46.42305555555555,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6553",
+        "name": "NGC 6553 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 272.3233333333333,
+        "dec": -25.908694444444443,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "2MS-GC02",
+        "name": "2MASS-GC02 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 272.40208333333334,
+        "dec": -20.778888888888886,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6558",
+        "name": "NGC 6558 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 272.5733333333334,
+        "dec": -31.76388888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "IC 1276",
+        "name": "Pal 7 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 272.6841666666667,
+        "dec": -7.207611111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 12",
+        "name": "Terzan 12 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 273.06583333333333,
+        "dec": -22.741944444444446,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6569",
+        "name": "NGC 6569 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 273.41166666666663,
+        "dec": -31.826888888888888,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "BH 261",
+        "name": "AL 3 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 273.52750000000003,
+        "dec": -28.634999999999998,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "GLIMPSE02",
+        "name": "GLIMPSE02 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 274.62708333333336,
+        "dec": -16.97722222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6584",
+        "name": "NGC 6584 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 274.6566666666667,
+        "dec": -52.21577777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6624",
+        "name": "NGC 6624 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 275.91879166666666,
+        "dec": -30.361027777777778,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6626",
+        "name": "M 28 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 276.13670833333333,
+        "dec": -24.869777777777777,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6638",
+        "name": "NGC 6638 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 277.73375,
+        "dec": -25.497472222222225,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6637",
+        "name": "M 69 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 277.84625,
+        "dec": -32.348083333333335,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6642",
+        "name": "NGC 6642 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 277.97541666666666,
+        "dec": -23.475194444444444,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6652",
+        "name": "NGC 6652 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 278.940125,
+        "dec": -32.990722222222225,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6656",
+        "name": "M 22 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 279.09975000000003,
+        "dec": -23.90475,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 8",
+        "name": "Pal 8 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 280.37458333333336,
+        "dec": -19.825833333333332,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6681",
+        "name": "M 70 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 280.80316666666664,
+        "dec": -32.29211111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "GLIMPSE01",
+        "name": "GLIMPSE01 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 282.20708333333334,
+        "dec": -1.4972222222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6712",
+        "name": "NGC 6712 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 283.2679166666667,
+        "dec": -8.70611111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6715",
+        "name": "M 54 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 283.763875,
+        "dec": -30.47986111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6717",
+        "name": "Pal 9 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 283.7751666666667,
+        "dec": -22.701472222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6723",
+        "name": "NGC 6723 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 284.888125,
+        "dec": -36.63225,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6749",
+        "name": "NGC 6749 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 286.31374999999997,
+        "dec": 1.9008333333333332,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6752",
+        "name": "NGC 6752 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 287.717125,
+        "dec": -59.98455555555556,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6760",
+        "name": "NGC 6760 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 287.8000416666667,
+        "dec": 1.0304722222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6779",
+        "name": "M 56 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 289.1482083333333,
+        "dec": 30.18347222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 7",
+        "name": "Terzan 7 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 289.43300000000005,
+        "dec": -34.65772222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 10",
+        "name": "Pal 10 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 289.50875,
+        "dec": 18.571666666666665,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Arp 2",
+        "name": "Arp 2 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 292.18379166666665,
+        "dec": -30.35563888888889,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6809",
+        "name": "M 55 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 294.99879166666665,
+        "dec": -30.96475,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Terzan 8",
+        "name": "Terzan 8 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 295.4350416666667,
+        "dec": -33.999472222222224,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 11",
+        "name": "Pal 11 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 296.31,
+        "dec": -8.007222222222222,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6838",
+        "name": "M 71 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 298.44370833333335,
+        "dec": 18.779194444444443,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6864",
+        "name": "M 75 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 301.51954166666667,
+        "dec": -21.921166666666668,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6934",
+        "name": "NGC 6934 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 308.547375,
+        "dec": 7.404472222222223,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 6981",
+        "name": "M 72 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 313.36541666666665,
+        "dec": -12.537305555555555,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 7006",
+        "name": "NGC 7006 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 315.37241666666665,
+        "dec": 16.187333333333335,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 7078",
+        "name": "M 15 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 322.49304166666667,
+        "dec": 12.167,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 7089",
+        "name": "M 2 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 323.36258333333336,
+        "dec": -0.82325,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 7099",
+        "name": "M 30 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 325.0921666666667,
+        "dec": -23.179861111111112,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 12",
+        "name": "Pal 12 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 326.66183333333333,
+        "dec": -21.25261111111111,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "Pal 13",
+        "name": "Pal 13 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 346.6851666666667,
+        "dec": 12.772,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    },
+    {
+        "id": "NGC 7492",
+        "name": "NGC 7492 (Globular Cluster)",
+        "type": "cluster",
+        "ra": 347.1109583333334,
+        "dec": -15.6115,
+        "description": null,
+        "magnitude": null,
+        "hasLightCurve": false
+    }
+]
