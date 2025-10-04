@@ -6,11 +6,16 @@ from reproject.mosaicking import find_optimal_celestial_wcs, reproject_and_coadd
 from reproject import reproject_interp
 import glob
 import os
+from datetime import datetime
 
 # --- Configuration ---
-INPUT_DIRECTORY = " " 
+INPUT_DIRECTORY = "tess_sector_97_ffis" 
 FITS_FILE_PATTERN = os.path.join(INPUT_DIRECTORY, '*ffic.fits')
-OUTPUT_MOSAIC_FITS = "tess_ccd_mosaic_stitched.fits"
+INTERMEDIATE_DIR = "intermediate_mosaics"
+FINAL_OUTPUT = "tess_ccd_mosaic_stitched_final.fits"
+
+# Batch size: adjust based on your RAM (100 files should be safe for 32GB)
+BATCH_SIZE = 100
 
 # --- Helper Function to Clean WCS ---
 def get_2d_celestial_data(filename):
@@ -19,8 +24,6 @@ def get_2d_celestial_data(filename):
     and returns a WCS object explicitly configured for 2D celestial coordinates.
     """
     with fits.open(filename, mode='readonly') as hdulist:
-        # Try to find the HDU with valid WCS data
-        # TESS calibrated FFIs usually store the image and WCS in HDU 1, but check all HDUs
         valid_hdu = None
         for i, hdu in enumerate(hdulist):
             if hdu.data is not None and 'CTYPE1' in hdu.header:
@@ -34,14 +37,7 @@ def get_2d_celestial_data(filename):
         data = hdulist[hdu_index].data
         header = hdulist[hdu_index].header
         
-        # Debug: Print what coordinate types we have
-        print(f"\nDEBUG {os.path.basename(filename)}:")
-        for i in range(1, 10):
-            ctype_key = f'CTYPE{i}'
-            if ctype_key in header:
-                print(f"  {ctype_key} = {header[ctype_key]}")
-        
-        # 1. Handle multi-dimensional data first
+        # Handle multi-dimensional data first
         if data.ndim == 3:
             mid_cadence = data.shape[0] // 2
             data_2d = data[mid_cadence, :, :]
@@ -50,26 +46,19 @@ def get_2d_celestial_data(filename):
         else:
             raise ValueError(f"Unexpected data dimensions: {data.ndim}")
         
-        # 2. Create WCS and check what we have
+        # Create WCS and check what we have
         wcs_full = WCS(header)
-        print(f"  Full WCS naxis: {wcs_full.naxis}")
-        print(f"  WCS celestial check: {wcs_full.has_celestial}")
-        
-        # 3. Strategy: Try different approaches to get celestial WCS
         wcs_2d = None
         
-        # Approach 1: Use .celestial if it exists and has celestial components
+        # Approach 1: Use .celestial if it exists
         if wcs_full.has_celestial:
             try:
                 wcs_2d = wcs_full.celestial
-                print(f"  ✓ Using .celestial property: naxis={wcs_2d.naxis}")
-            except Exception as e:
-                print(f"  ✗ .celestial failed: {e}")
+            except Exception:
+                pass
         
-        # Approach 2: If that didn't work, try sub-selecting specific axes
+        # Approach 2: Try sub-selecting specific axes
         if wcs_2d is None or not wcs_2d.has_celestial:
-            print(f"  Attempting to find RA/Dec axes manually...")
-            # Look for RA and Dec axes
             ra_axis = None
             dec_axis = None
             
@@ -77,26 +66,19 @@ def get_2d_celestial_data(filename):
                 ctype = wcs_full.wcs.ctype[i]
                 if 'RA' in ctype or 'LON' in ctype:
                     ra_axis = i
-                    print(f"    Found RA axis at position {i}: {ctype}")
                 elif 'DEC' in ctype or 'LAT' in ctype:
                     dec_axis = i
-                    print(f"    Found DEC axis at position {i}: {ctype}")
             
             if ra_axis is not None and dec_axis is not None:
-                # Sub-select these specific axes
                 try:
-                    wcs_2d = wcs_full.sub([ra_axis + 1, dec_axis + 1])  # WCS uses 1-based indexing
-                    print(f"  ✓ Created WCS from axes {ra_axis} and {dec_axis}: naxis={wcs_2d.naxis}")
-                except Exception as e:
-                    print(f"  ✗ Axis sub-selection failed: {e}")
+                    wcs_2d = wcs_full.sub([ra_axis + 1, dec_axis + 1])
+                except Exception:
+                    pass
         
-        # Approach 3: Last resort - build from scratch
+        # Approach 3: Build from scratch
         if wcs_2d is None or not wcs_2d.has_celestial or wcs_2d.naxis != 2:
-            print(f"  Building WCS from scratch using header keywords...")
             wcs_2d = WCS(naxis=2)
             
-            # Find which axes in the header correspond to celestial coordinates
-            # TESS typically uses 1 and 2, but let's be thorough
             celestial_axis_1 = None
             celestial_axis_2 = None
             
@@ -112,9 +94,6 @@ def get_2d_celestial_data(filename):
             if celestial_axis_1 is None or celestial_axis_2 is None:
                 raise ValueError(f"Cannot find RA/Dec axes in header for {filename}")
             
-            print(f"    Using header axes {celestial_axis_1} and {celestial_axis_2}")
-            
-            # Copy WCS parameters from the identified celestial axes
             wcs_2d.wcs.ctype[0] = header.get(f'CTYPE{celestial_axis_1}', 'RA---TAN')
             wcs_2d.wcs.ctype[1] = header.get(f'CTYPE{celestial_axis_2}', 'DEC--TAN')
             wcs_2d.wcs.crval[0] = header.get(f'CRVAL{celestial_axis_1}', 0.0)
@@ -122,7 +101,6 @@ def get_2d_celestial_data(filename):
             wcs_2d.wcs.crpix[0] = header.get(f'CRPIX{celestial_axis_1}', 1.0)
             wcs_2d.wcs.crpix[1] = header.get(f'CRPIX{celestial_axis_2}', 1.0)
             
-            # Handle CD matrix
             cd_keys = [
                 (f'CD{celestial_axis_1}_{celestial_axis_1}', f'CD{celestial_axis_1}_{celestial_axis_2}'),
                 (f'CD{celestial_axis_2}_{celestial_axis_1}', f'CD{celestial_axis_2}_{celestial_axis_2}')
@@ -133,84 +111,61 @@ def get_2d_celestial_data(filename):
                     [header[cd_keys[0][0]], header[cd_keys[0][1]]],
                     [header[cd_keys[1][0]], header[cd_keys[1][1]]]
                 ]
-                print(f"    ✓ Set CD matrix")
             elif f'CDELT{celestial_axis_1}' in header and f'CDELT{celestial_axis_2}' in header:
                 wcs_2d.wcs.cdelt[0] = header[f'CDELT{celestial_axis_1}']
                 wcs_2d.wcs.cdelt[1] = header[f'CDELT{celestial_axis_2}']
-                print(f"    ✓ Set CDELT values")
             
-            # Set additional parameters if available
             if 'RADESYS' in header:
                 wcs_2d.wcs.radesys = header['RADESYS']
             if 'EQUINOX' in header:
                 wcs_2d.wcs.equinox = header['EQUINOX']
         
-        # Final verification
-        if wcs_2d.naxis != 2:
-            raise ValueError(f"WCS is not 2D (naxis={wcs_2d.naxis}) for {filename}")
-        
-        if not wcs_2d.has_celestial:
-            raise ValueError(f"WCS does not have celestial components for {filename}")
-        
-        print(f"  ✓✓ Final WCS: naxis={wcs_2d.naxis}, celestial={wcs_2d.has_celestial}, ctype={wcs_2d.wcs.ctype}")
+        if wcs_2d.naxis != 2 or not wcs_2d.has_celestial:
+            raise ValueError(f"Failed to create valid 2D celestial WCS for {filename}")
 
     return data_2d, wcs_2d
 
-# --- Main Mosaicking Function ---
-def stitch_tess_mosaic(file_pattern, output_filename):
+# --- Batch Mosaicking Function ---
+def stitch_batch(file_list, output_filename, batch_num, total_batches):
     """
-    Stitches multiple FITS files (FFIs) into a single FITS mosaic using WCS.
+    Stitches a batch of FITS files into a single intermediate mosaic.
     """
-    input_files = sorted(glob.glob(file_pattern))
-    print(f"Found {len(input_files)} FITS files to stitch.\n")
+    print(f"\n{'='*70}")
+    print(f"BATCH {batch_num}/{total_batches}: Processing {len(file_list)} files")
+    print(f"{'='*70}")
     
-    if len(input_files) < 2:
-        print("ERROR: Need at least 2 FITS files to create a mosaic.")
-        return
-
-    # Load the image and WCS data as clean (data, WCS) tuples
+    start_time = datetime.now()
+    
     input_data_wcs = []
-    for filename in input_files:
+    for filename in file_list:
         try:
             data, wcs = get_2d_celestial_data(filename)
             
-            # Verification before adding
-            if wcs.naxis != 2:
-                print(f"ERROR: Skipping {filename} - WCS is {wcs.naxis}D, not 2D")
-                continue
-            
-            if not wcs.has_celestial:
-                print(f"ERROR: Skipping {filename} - WCS lacks celestial components")
+            if wcs.naxis != 2 or not wcs.has_celestial:
+                print(f"Skipping {os.path.basename(filename)} - invalid WCS")
                 continue
                 
             input_data_wcs.append((data, wcs))
-            print(f"✓ Added {os.path.basename(filename)} to mosaic list\n")
+            print(f"Loaded {os.path.basename(filename)}")
             
         except Exception as e:
-            print(f"ERROR: Failed to process {filename}. Skipping. Error: {e}\n")
+            print(f"ERROR processing {os.path.basename(filename)}: {e}")
 
     if len(input_data_wcs) < 2:
-        print("ERROR: Not enough valid FITS files loaded.")
-        return
+        print(f"ERROR: Not enough valid files in batch {batch_num}. Skipping.")
+        return False
 
-    print(f"\n{'='*60}")
-    print(f"Successfully loaded {len(input_data_wcs)} files for mosaicking.")
-    print(f"{'='*60}\n")
-
-    # Calculate the Optimal WCS and Output Shape
-    print("Calculating optimal mosaic boundaries (WCS)...")
+    print(f"\n  Successfully loaded {len(input_data_wcs)}/{len(file_list)} files")
+    print(f"  Calculating optimal WCS for batch...")
     
     reference_wcs, shape_out = find_optimal_celestial_wcs(
         input_data_wcs,
         frame='icrs', 
         projection='TAN'
     )
-    print(f"Optimal Mosaic Size (pixels): {shape_out}")
+    print(f"  Batch mosaic size: {shape_out}")
 
-    # Reproject and Co-add (The Stitching)
-    print("\nStarting re-projection and co-addition (stitching)...")
-    print("This may take several minutes...\n")
-    
+    print(f"  Reprojecting and co-adding...")
     mosaic_array, footprint = reproject_and_coadd(
         input_data_wcs,
         reference_wcs,
@@ -219,12 +174,72 @@ def stitch_tess_mosaic(file_pattern, output_filename):
         combine_function='mean'    
     )
 
-    # Save the Final Mosaic
     hdu = fits.PrimaryHDU(data=mosaic_array, header=reference_wcs.to_header())
     hdu.writeto(output_filename, overwrite=True)
-    print(f"\nSUCCESS: Mosaic saved as: {output_filename}")
+    
+    elapsed = datetime.now() - start_time
+    print(f"Batch {batch_num} saved: {output_filename}")
+    print(f"Time elapsed: {elapsed}")
 
-    # Display the Result
+    return True
+
+# --- Final Mosaicking Function ---
+def stitch_final_mosaic(intermediate_files, output_filename):
+    """
+    Stitches all intermediate mosaics into the final mosaic.
+    """
+    print(f"\n{'='*70}")
+    print(f"FINAL STITCHING: Combining {len(intermediate_files)} intermediate mosaics")
+    print(f"{'='*70}\n")
+    
+    start_time = datetime.now()
+    
+    input_data_wcs = []
+    for filename in intermediate_files:
+        try:
+            with fits.open(filename) as hdul:
+                data = hdul[0].data
+                wcs = WCS(hdul[0].header)
+                
+                if wcs.naxis != 2 or not wcs.has_celestial:
+                    print(f"Skipping {os.path.basename(filename)} - invalid WCS")
+                    continue
+                    
+                input_data_wcs.append((data, wcs))
+                print(f"Loaded {os.path.basename(filename)}")
+
+        except Exception as e:
+            print(f"ERROR loading {os.path.basename(filename)}: {e}")
+
+    if len(input_data_wcs) < 1:
+        print("ERROR: No valid intermediate mosaics to combine.")
+        return False
+
+    print(f"\n  Calculating final optimal WCS...")
+    reference_wcs, shape_out = find_optimal_celestial_wcs(
+        input_data_wcs,
+        frame='icrs', 
+        projection='TAN'
+    )
+    print(f"  Final mosaic size: {shape_out}")
+
+    print(f"  Creating final mosaic (this may take a while)...")
+    mosaic_array, footprint = reproject_and_coadd(
+        input_data_wcs,
+        reference_wcs,
+        shape_out=shape_out,
+        reproject_function=reproject_interp,
+        combine_function='mean'    
+    )
+
+    hdu = fits.PrimaryHDU(data=mosaic_array, header=reference_wcs.to_header())
+    hdu.writeto(output_filename, overwrite=True)
+    
+    elapsed = datetime.now() - start_time
+    print(f"\nFINAL MOSAIC SAVED: {output_filename}")
+    print(f"Time elapsed: {elapsed}")
+
+    # Create preview
     plt.figure(figsize=(12, 12))
     ax = plt.subplot(111, projection=reference_wcs)
     
@@ -241,12 +256,70 @@ def stitch_tess_mosaic(file_pattern, output_filename):
     
     ax.set_xlabel('Right Ascension (RA)')
     ax.set_ylabel('Declination (Dec)')
-    plt.title('TESS FFI Mosaiced Image')
+    plt.title('TESS FFI Final Mosaic')
     plt.tight_layout()
-    plt.savefig('tess_mosaic_preview.png', dpi=150, bbox_inches='tight')
-    print("Preview saved as: tess_mosaic_preview.png")
-    plt.show()
+    plt.savefig('tess_mosaic_final_preview.png', dpi=150, bbox_inches='tight')
+    print(f"  Preview saved: tess_mosaic_final_preview.png")
+    plt.close()
+    
+    return True
 
-# --- Execution ---
+# --- Main Execution ---
+def main():
+    overall_start = datetime.now()
+    
+    # Create intermediate directory
+    os.makedirs(INTERMEDIATE_DIR, exist_ok=True)
+    
+    # Get all FITS files
+    all_files = sorted(glob.glob(FITS_FILE_PATTERN))
+    print(f"\n{'='*70}")
+    print(f"TESS FFI BATCH MOSAIC STITCHER")
+    print(f"{'='*70}")
+    print(f"Found {len(all_files)} FITS files")
+    print(f"Batch size: {BATCH_SIZE} files per batch")
+    
+    if len(all_files) < 2:
+        print("ERROR: Need at least 2 FITS files.")
+        return
+    
+    # Split into batches
+    batches = []
+    for i in range(0, len(all_files), BATCH_SIZE):
+        batches.append(all_files[i:i+BATCH_SIZE])
+    
+    total_batches = len(batches)
+    print(f"Total batches: {total_batches}")
+    
+    # Process each batch
+    intermediate_files = []
+    for batch_num, batch_files in enumerate(batches, 1):
+        output_file = os.path.join(INTERMEDIATE_DIR, f"intermediate_mosaic_{batch_num:03d}.fits")
+        
+        success = stitch_batch(batch_files, output_file, batch_num, total_batches)
+        
+        if success:
+            intermediate_files.append(output_file)
+        
+        print(f"\nProgress: {batch_num}/{total_batches} batches completed")
+    
+    # Final stitching
+    if len(intermediate_files) > 0:
+        print(f"\n{'='*70}")
+        print(f"BATCH PROCESSING COMPLETE")
+        print(f"Successfully created {len(intermediate_files)} intermediate mosaics")
+        print(f"{'='*70}")
+        
+        stitch_final_mosaic(intermediate_files, FINAL_OUTPUT)
+        
+        overall_elapsed = datetime.now() - overall_start
+        print(f"\n{'='*70}")
+        print(f"ALL DONE!")
+        print(f"Total time: {overall_elapsed}")
+        print(f"Final output: {FINAL_OUTPUT}")
+        print(f"{'='*70}\n")
+    else:
+        print("\nERROR: No intermediate mosaics were created successfully.")
+
 if __name__ == "__main__":
-    stitch_tess_mosaic(FITS_FILE_PATTERN, OUTPUT_MOSAIC_FITS)
+    main()
